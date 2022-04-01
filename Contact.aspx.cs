@@ -74,6 +74,9 @@ namespace ASP.Net_resolución_del_examen_parcial
                     }
                 }
             }
+
+            reportes = reportes.OrderBy(a => a.Grado).ToList();
+
             GridView1.DataSource = reportes;
             GridView1.DataBind();
         }
