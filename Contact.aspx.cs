@@ -60,6 +60,9 @@ namespace ASP.Net_resolución_del_examen_parcial
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+            LeerAlumnos();
+            LeerInscripciones();
+
             for (int i = 0; i<inscripciones.Count; i++)
             {
                 for (int j = 0; j < alumnos.Count; j++)
@@ -79,6 +82,8 @@ namespace ASP.Net_resolución_del_examen_parcial
 
             GridView1.DataSource = reportes;
             GridView1.DataBind();
+
+            Label1.Text = inscripciones.Count.ToString();
         }
     }
 }
