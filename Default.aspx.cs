@@ -12,6 +12,7 @@ namespace ASP.Net_resolución_del_examen_parcial
     {
        List<Alumno> alumnos = new List<Alumno>();
        static List<Inscripciones> inscripciones = new List<Inscripciones>();
+    
 
         private void LeerAlumnos ()
         {
@@ -34,12 +35,17 @@ namespace ASP.Net_resolución_del_examen_parcial
     
         protected void Page_Load(object sender, EventArgs e)
         {
-            LeerAlumnos();
-            DropDownList1.DataTextField = "Nombre";
-            DropDownList1.DataValueField = "Carne";
+            if (!IsPostBack)
+            {
+                LeerAlumnos();
 
-           DropDownList1.DataSource = alumnos;
-            DropDownList1.DataBind();
+                DropDownList1.DataTextField = "Nombre";
+                DropDownList1.DataValueField = "Carne";
+
+                DropDownList1.DataSource = alumnos;
+                DropDownList1.DataBind();
+            }
+           
 
         }
 
@@ -70,12 +76,17 @@ namespace ASP.Net_resolución_del_examen_parcial
             Inscripciones inscripcion = new Inscripciones();
 
             inscripcion.carne = DropDownList1.SelectedValue;
-            inscripcion.grado = Convert.ToInt16(TextBox1.Text);
+            inscripcion.grado = Convert.ToInt16(TextBoxGrado.Text);
             inscripcion.fecha = DateTime.Now;
 
             inscripciones.Add(inscripcion);
 
             GuardarInscripciones();
+        }
+
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
